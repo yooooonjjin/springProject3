@@ -1,0 +1,71 @@
+>> 상세보기 -> { 이전번호 / 고유번호 / 다음번호 }
+
+예) 15번 이전 -> select max(seqid) from myboard where seqid < 15;
+예) 15번 다음 -> select min(seqid) from myboard where seqid > 15;
+
+고유번호 전달 << 이전 - 현재보다 낮은 번호 >>
+		<< 다음 - 현재보다 높은 번호 >>
+
+----------------------------------------------------------------------------
+
+{ 공지사항 / 댓글게시판 / 답변게시판 }
+{ 업로드 게시판 } - { 공지사항 }
+
+>> 자료들 올리는 방법	- (1) 서버의 특정 디렉토리에 저장 
+				- (2) Table 특정 컬럼에 저장 / 보안관련
+
+
+( 테이블 구성 )
+create table dataBoard (
+	seqid number(11) not null primary key,
+	title varchar2(100) not null,
+	pass varchar2(100) not null,
+	writer varchar2(30),
+	content varchar2(4000),
+	hits number(11) default not null 0,
+	rdate timestamp,
+	udate timestamp,
+	filepath varchar2(100),
+	filename varchar2(100),
+	filesize number(11)
+);
+
+( 시퀀스 )
+create sequence dataBoard_seq (
+	start with 1
+	increment by 1
+	maxvalue 99999;
+);
+
+---------------------------------------------------------
+[[ 프로그램 목록 ]]
+
+( 비즈니스 레벨 )	- 비즈니스	- 데이터 입출력
+1. DataController.java
+2. DataService.java		- interface
+3. DataServiceImpl.java
+4. DataMapper.java		- interface
+
+5. DataDto.java
+
+( 출력 레벨 )
+1. dataWrite.jsp	- /dataWrite	- /insertDataboard
+2. dataList.jsp	- /dataList
+3. dataDetail.jsp	- /dataDetail
+4. dataModify.jsp	- /dataModify	- /updateDataboard
+5. passWrite.jsp	- /datapass	- /deleteDataboard
+
+( SQL )
+1. Data_SQL.xml
+
+----------------------------------------------------------------------------
+
+화면(파일)	-> 서버의 {특정} 공간에 임시저장 (파일명은 암호화 처리됨)
+		   임시파일 -> 오리지널
+c: ~~~ / a.jpg
+
+{로그인} -> 세션(전역변수) -> /tmp
+
+작업 --> 취합 --> {리눅스 서버} - /tmp
+
+

@@ -1,0 +1,43 @@
+[ JSP ]
+
+			- html / css / javascript
+java + 서블릿 (java+html) -> jsp (java+html+css)
+
+deptModify.jsp?deptno = 50	// 파라메터
+
+--------------------------------------------------------------------
+
+[ JSP ]
+
+(1)	jspProject 생성
+(2)	apache-tomcat 서버 설치 / jdk 설치
+(3)	lib/ojdbc6.jar
+(4)	이클립스 + apache 서버 연결				- window -> preferencse -> server -> runtime -> add
+(5)	jspProject 프로젝트 + apache 서버 연결		- 하단의 servers 탭
+
+* 오류 표시 *
+-	프로젝트 우클릭 -> build path -> Libraries 탭 -> modulepath
+	-> add Libraries -> server runtime 선택 -> apache 추가
+
+webapp -
+		dept(폴더)	-	deptList.jsp		(화면)
+					{SELECT}
+					{목록클릭}-부서번호->[수정화면]
+					{부서등록}->[등록화면]
+					
+				-	deptWirite.jsp		(화면)
+				
+				-	deptWriteSave.jsp	(저장처리)
+					{INSERT}
+					
+				-	deptModify.jsp		(화면)
+					{SELECT} .. WHERE->{부서번호}
+					>> 상세보기...[수정][취소][삭제]
+					
+					{삭제버튼}-부서번호-> [deptDelete]
+					
+				-	deptModifySave.jsp	(수정처리)
+					{UPDATE} .. WHERE->{부서번호}
+				
+				-	deptDelete.jsp
+

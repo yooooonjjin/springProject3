@@ -1,0 +1,205 @@
+body {
+	font-size : 12px;
+	color : #333;
+}
+
+.input_border, .textarea_border {
+	border : none;
+}
+
+button {
+	cursor : pointer;
+}
+
+.table1 {
+	width : 100%;
+	table-collaps : collaps;
+}
+.table1 th {
+	border : 1px solid #0b5f31;
+	background-color : #0b5f31;
+	color : #fff;
+	font-size : 12px;
+	padding : 3px;
+	border-radius : 5px;
+}
+.table1 td {
+	box-shadow: 0px 0px 3px 1px #ccc;
+	border : 1px solid #ccc;
+	border-radius : 5px;
+	padding : 3px;
+	font-size : 12px;
+	color : #333;
+}
+
+.btn_wrap {
+	display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_wrap .btn01 button {
+	border : 1px solid #0b5f31;
+	background-color : #fff;
+	padding : 4px 10px;
+	border-radius : 5px;
+	color : #0b5f31;
+	transition: 0.2s;
+}
+.btn_wrap .btn01 button:hover {
+	border : 1px solid #0b5f31;
+	background-color : #0b5f31;
+	color : #fff;
+	transition: 0.2s;
+}
+.div_button_area, .btn_wrap .btn01 {
+	display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    margin : 10px;
+}
+.div_button_area button {
+	border : 1px solid #0b5f31;
+	background-color : #0b5f31;
+	padding : 4px 10px;
+	border-radius : 5px;
+	color : #fff;
+}
+.div_button_area button:last-child {
+	border : 1px solid #0b5f31;
+	background-color : #fff;
+	padding : 4px 10px;
+	border-radius : 5px;
+	color : #0b5f31;
+}
+
+.input1 {
+	width : 98%;
+	padding : 3px;
+}
+
+.textarea1 {
+	width : 98%;
+	heignt : 100px;
+	padding : 3px;
+	font-size : 12px;
+}
+
+.div_title {
+	font-size : 20px;
+	color : #333;
+	padding : 5px 0;
+	font-weight: 500;
+	text-align: center;
+}
+
+.total {
+	padding : 5px;
+}
+
+.div_page {
+	display: flex;
+    align-items: center;
+    gap : 7px;
+    justify-content: center;
+    font-size: 14px;
+	margin : 10px 0;
+}
+
+.emsis_icon {
+	display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_content {
+	overflow-x : auto;
+	overflow-y : auto;
+	height: 150px;
+	width: 98%;
+}
+
+
+.under_wrap {
+	display: flex;
+    flex-wrap: wrap;
+    margin : 20px 0;
+}
+
+.under_wrap > div {
+	width : 100%;
+}
+
+.textarea2 {
+	width : 99%;
+	height: 100px;
+}
+
+.under_con {
+	display: flex;
+	gap : 5px;
+}
+.under_con .input2, select {
+	width : 30%;
+}
+.under_con button {
+	border : 1px solid #0b5f31;
+	background-color : #0b5f31;
+	padding : 4px 10px;
+	border-radius : 5px;
+	color : #fff;
+	width : 10%;
+}
+
+.cmmd_table {
+	margin : 30px 0;
+}
+.cmmd_table td {
+	border : 1px solid #666;
+	padding : 7px;
+}
+.cmmd_inner {
+	display: flex;
+    flex-wrap: wrap;
+}
+.cmmd_table .list_num {
+	text-align : center;
+}
+.cmmd_con01 p {
+	margin : 0;
+}
+
+.cmmd_con02 {
+	display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    width : 100%;
+}
+.cmmd_con02 p {
+	margin : 0;
+	font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+}
+
+
+.file_wrap {
+	padding: 3px 0;
+	align-items: center;
+	display: flex;
+	gap:5px;
+}
+
+
+
+
+
+
+
+
+
+

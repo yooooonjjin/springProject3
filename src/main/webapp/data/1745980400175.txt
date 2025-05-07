@@ -1,0 +1,76 @@
+spring (origin)	-> (new) sprint boot	-> java + html/thymeleaf/jpa
+									-> java + jsp/jst1
+									
+				-> (old) egovFrameWork	-> java + jsp/jst1
+									-> java + html/thymeleaf/jpa (세모)
+
+------------------------------------------------------------------
+Developer Tools	- Lombok
+				- Spring Boot DevTools
+
+SQL				- Oracle Driver
+				- MyBatis Framework
+				
+web				- spring Web
+------------------------------------------------------------------
+application.properties 설정
+
+spring.datasource.driverClassName = oracle.jdbc.OracleDriver
+spring.datasource.url = jdbc:oracle:thin:@//localhost:1521/orcl7
+spring.datasource.username = c##java
+spring.datasource.password = 1234
+
+server.port = 8090
+
+#view
+spring.mvc.view.prefix=/
+spring.mvc.view.suffix=.jsp
+
+#encoding
+server.servlet.encoding.charset=utf-8
+server.servlet.encoding.force=true
+server.servlet.encoding.enabled=true
+
+#resources
+#spring.mvc.static-path-pattern=/resources/**
+
+#mybatis alias 
+#mapper.xml
+mybatis.type-aliases-package=com.myhome.dto
+mybatis.mapper-locations: db/**/*.xml
+------------------------------------------------------------------
+[]
+1. src -main -webapp -board -borderWriter.jsp
+
+2. src/main/java 폴더에
+-com.myhome.controller (패키지 생성) -BoardcController (클래스 파일)
+
+(환경 1) application.properties
+	- DB 연결 및 여러 경로 설정
+(환경 2) pom.xml
+	- 드라이버/프로그램 설정
+
+localhost:8090/boardWrite
+------------------------------------------------------------------
+[ 목록 출력 ]
+
+=> localhost:8090/b/list
+
+0. boardList.jsp (b/list)
+
+1. com.myhome.controller
+	>> BoardController.java
+	
+2. com.myhome.dto
+	>> BoardDto.java
+	.. 예) 등록화면 -> 데이터 임시 저장
+	
+3. com.myhome.service
+	>> BoardService.java
+	>> BoardServiceImpl.java
+	
+4. com.myhome.mapper
+	>> BoardMapper.java
+	
+5. resources > db > sql > Board_SQL.xml
+------------------------------------------------------------------

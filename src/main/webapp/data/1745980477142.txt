@@ -1,0 +1,47 @@
+[회원관리] - member
+
+webapp - css(폴더) - style.css
+
+(파일목록)
+1.  MbrDto.java
+2.  MbrController.java
+3.  MbrService.java
+4.  MbrServiceImpl.java
+5.  MbrMapper.java
+6.  Mbr_SQL.xml
+
+7.  mbrWrite.jsp
+8.  mbrList.jsp
+9.  mbrDetail.jsp
+10. mbrModify.jsp
+--------------------------------------------------------
+(프로그램 목록)
+1. /mbrWrite	- 등록화면(주소)
+2. /mbrInsert	- 등록처리
+3. /mbrList	- 목록화면
+4. /mbrDetail	- 상세화면
+5. /mbrModify	- 수정화면
+6. /mbrUpdate	- 수정처리
+7. /mbrDelete	- 삭제처리
+--------------------------------------------------------
+(테이블 생성) - 아이디 / 암호 / 이름 / 핸드폰 / 성별 / 주소 / 등록일
+create table mbr (
+	userid varchar2(50) not null,
+	pass varchar2(100) not null,
+	name varchar2(50) not null,
+	phone varchar2(50) not null,
+	gender char(1),
+	addr varchar2(100),
+	rdate timestamp default sysdate,
+	constraint mbr_pk primary key(userid),
+	constraint mbr_ck check(gender in('M','F'));
+);
+--------------------------------------------------------
+[ERD] - 테이블 구조도 - ERD 프로그램 (ERWIN)
+
+
+
+
+
+
+

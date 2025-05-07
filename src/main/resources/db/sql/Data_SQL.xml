@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myhome.mapper.DataMapper">
+	
+	<insert id="insertDataboard">
+		
+		INSERT INTO	DATABOARD	(	SEQID
+									,TITLE
+									,PASS
+									,WRITER
+									,CONTENT
+									,HITS
+									,RDATE
+									,UDATE
+									,FILEPATH
+									,FILENAME
+									,FILESIZE	)
+									
+					VALUES		( 	databoard_seq.nextval
+									,#{title}
+									,#{pass}
+									,#{writer}
+									,#{content}
+									,'0'
+									,sysdate
+									,''
+									,#{filepath}
+									,#{filename}
+									,#{filesize}	)
+					
+	</insert>
+	
+	
+	<update id="updateDataboardHits">
+		UPDATE DATABOARD SET HITS=hits+1 WHERE SEQID = #{seqid}
+	</update>
+	
+	<update id="updateDataboardFilename">
+		UPDATE DATABOARD SET FILENAME = #{filename} WHERE SEQID = #{seqid}
+	</update>
+	
+	<update id="updateDataboard">
+		UPDATE DATABOARD SET	TITLE		=#{title}
+								,WRITER		=#{writer}
+								,CONTENT	=#{content}
+								,UDATE 		=sysdate
+								,FILENAME 	=#{filename}
+						WHERE
+								SEQID = #{seqid}
+	</update>
+	
+	
+	
+	<select id="selectDataboardList" resultType="Map">
+		SELECT B.* FROM (
+			SELECT ROWNUM RN, A.* FROM (
+				SELECT	SEQID
+						,TITLE
+						,PASS
+						,WRITER
+						,CONTENT
+						,HITS
+						,TO_CHAR(RDATE,'YYYY-MM-DD') RDATE
+						,TO_CHAR(UDATE,'YYYY-MM-DD') UDATE
+						,FILENAME
+				FROM
+						DATABOARD D
+				ORDER BY
+						SEQID DESC ) A ) B
+		WHERE
+			RN >= #{firstIndex} AND RN <![CDATA[<=]]> #{lastIndex}
+	</select>
+
+	<select id="selectDataboardTotal" resultType="int">
+		SELECT COUNT(*) FROM DATABOARD
+	</select>
+	
+	<select id="selectDataboardDetail" resultType="dataDto">
+		SELECT	SEQID
+				,TITLE
+				,PASS
+				,WRITER
+				,CONTENT
+				,HITS
+				,TO_CHAR(RDATE,'YYYY-MM-DD') RDATE
+				,TO_CHAR(UDATE,'YYYY-MM-DD') UDATE
+				,FILENAME
+				,(SELECT MAX(SEQID) FROM DATABOARD WHERE SEQID <![CDATA[<]]> #{seqid}) BSEQID
+				,(SELECT MIN(SEQID) FROM DATABOARD WHERE SEQID > #{seqid}) NSEQID
+		FROM
+				DATABOARD
+		WHERE
+				SEQID = #{seqid}
+	</select>
+	
+	
+</mapper>

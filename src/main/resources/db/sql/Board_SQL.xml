@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myhome.mapper.BoardMapper">
+	
+	<!-- select -->
+	<select id="selectBoardList" resultType="Map">
+		SELECT	seqid
+				,title
+				,writer
+				,hits
+				,to_char(rdate,'yyyy-mm-dd') rdate
+				,to_char(udate,'yyyy-mm-dd') udate
+				,content
+		FROM
+				nboard		
+		ORDER BY
+				seqid desc
+	</select>
+	
+	<select id="selectBoardDetail" resultType="com.myhome.dto.BoardDto">
+		SELECT	seqid
+				,title
+				,pass
+				,writer
+				,content
+				,hits
+				,rdate
+				,udate
+		FROM 
+				nboard		
+		WHERE
+				seqid=#{seqid}
+	</select>
+	<!-- select -->
+	
+	
+	<!-- insert -->
+	<insert id="insertBoard">
+		INSERT INTO nboard(	seqid
+							,title
+							,pass
+							,writer
+							,content
+							,hits
+							,rdate
+							,udate		
+					)
+					VALUES(	nboard_seq.nextval
+							,#{title}
+							,#{pass}
+							,#{writer}
+							,#{content}
+							,'0'
+							,sysdate
+							,'' 
+					)
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE nboard SET	title		= #{title}
+							,writer		= #{writer}
+							,content	= #{content}
+							,udate		= sysdate
+					WHERE
+							seqid = #{seqid}
+					AND
+							pass = #{pass}	
+	</update>
+	
+	<update id="updateBoardHits">
+		UPDATE nboard SET hits=hits+1 WHERE seqid = #{seqid}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM	nboard WHERE seqid = #{seqid}
+	</delete>
+	
+</mapper>

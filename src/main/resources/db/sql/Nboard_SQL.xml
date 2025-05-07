@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myhome.mapper.NboardMapper">
+	
+	<insert id="insertNboard">
+		INSERT INTO NBOARD
+							(SEQID
+							,TITLE
+							,PASS
+							,WRITER
+							,CONTENT
+							,HITS
+							,RDATE
+							,UDATE
+							,EMSIS )
+					VALUES
+							(nboard_seq.nextval
+							,#{title}
+							,#{pass}
+							,#{writer}
+							,#{content}
+							,'0'
+							,#{rdate}
+							,''
+							,#{emsis} )
+	</insert>
+	
+	
+	
+	<select id="selectNboardList" resultType="Map">
+		SELECT B.* FROM (
+			SELECT ROWNUM RN, A.* FROM (
+				SELECT	SEQID
+						,TITLE
+						,PASS
+						,WRITER
+						,CONTENT
+						,HITS
+						,RDATE
+						,UDATE
+						,EMSIS
+				FROM
+						NBOARD
+				WHERE
+						EMSIS = 'N'
+				ORDER BY
+						SEQID DESC ) A ) B
+		WHERE
+						
+						RN >=${firstIndex} AND RN <![CDATA[<=]]> ${lastIndex}
+
+	</select>
+	
+	<select id="selectNboardEmsisList" resultType="Map">
+		SELECT B.* FROM (
+			SELECT ROWNUM RN, A.* FROM (
+				SELECT	SEQID
+						,TITLE
+						,PASS
+						,WRITER
+						,CONTENT
+						,HITS
+						,RDATE
+						,UDATE
+						,EMSIS
+				FROM
+						NBOARD
+				WHERE
+						EMSIS = 'Y'
+				ORDER BY
+						SEQID DESC ) A ) B
+
+	</select>
+	
+	<select id="selectNboardTotal" resultType="int">
+		SELECT count(*) FROM NBOARD WHERE EMSIS = 'N'
+	</select>
+	
+	<select id="selectNboardPassCheck" resultType="int">
+		SELECT count(*) FROM NBOARD WHERE SEQID =#{seqid} AND PASS =#{pass}
+	</select>
+	
+	<select id="selectNboardDetail" resultType="nboardDto">
+		<![CDATA[
+			SELECT	SEQID
+					,TITLE
+					,PASS
+					,WRITER
+					,CONTENT
+					,HITS
+					,RDATE
+					,UDATE
+					,(select min(seqid) from nboard where seqid > #{seqid})	nseqid
+					,(select max(seqid) from nboard where seqid < #{seqid})	bseqid
+					,EMSIS
+			FROM
+					NBOARD
+			WHERE
+					SEQID =#{seqid}
+		]]>
+	</select>
+
+	
+	<update id="updateNboardHits">
+		UPDATE nboard SET hits=hits+1 WHERE seqid = #{seqid}
+	</update>
+	
+	<update id="updateNboard">
+		UPDATE nboard SET	TITLE 		=#{title} 
+							,WRITER 	=#{writer}
+							,EMSIS 		=#{emsis}
+							,CONTENT	=#{content}
+		WHERE
+							pass 		=#{pass}
+	</update>
+	
+	
+	<delete id ="deleteNboard">
+		DELETE nboard WHERE SEQID=#{seqid} AND PASS=#{pass}
+	</delete>
+	
+	
+</mapper>
