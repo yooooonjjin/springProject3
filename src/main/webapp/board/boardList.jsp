@@ -25,7 +25,7 @@
 				<col width="20%"/>
 			</colgroup>
 			<tr>
-				<th>번호</th>		
+				<th>번호1</th>		
 				<th>제목</th>		
 				<th>글쓴이</th>		
 				<th>조회수</th>		
