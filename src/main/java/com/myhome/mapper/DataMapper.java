@@ -24,4 +24,6 @@ public interface DataMapper {
 
 	int updateDataboard(DataDto dto);
 
+	int deleteDataboard(int seqid);
+
 }

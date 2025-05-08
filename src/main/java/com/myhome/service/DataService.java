@@ -32,6 +32,8 @@ public interface DataService {
 
 	int updateDataboard(DataDto dto) throws Exception;
 
+	int deleteDataboard(int seqid) throws Exception;
+
 	
 	
 }

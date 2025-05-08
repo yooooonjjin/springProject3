@@ -51,4 +51,9 @@ public class DataServiceImpl implements DataService {
 		return mapper.updateDataboard(dto);
 	}
 
+	@Override
+	public int deleteDataboard(int seqid) throws Exception {
+		return mapper.deleteDataboard(seqid);
+	}
+
 }
