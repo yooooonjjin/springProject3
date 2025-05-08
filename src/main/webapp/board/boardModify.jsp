@@ -22,7 +22,7 @@
 
 	<body>
 		<div class="div_title">
-			게시판 수정 화면
+			게시판 수정 화면55555
 		</div>
 	
 		<form name="frm" method="post" action="/b/update">
